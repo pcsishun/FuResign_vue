@@ -1,4 +1,5 @@
 <template>
+
   <section class="cover">
     <div class="container">
       <div class="about" >
