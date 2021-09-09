@@ -52,5 +52,7 @@ export default {
 .nav-menu{
   font-weight: bold;
 }
+
+ 
  
 </style>
