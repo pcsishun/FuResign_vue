@@ -20,7 +20,8 @@ export default {
 </script>
 
 
-<style >
+
+<style :scoped>
 .cover{
   position: relative;
   overflow: hidden;

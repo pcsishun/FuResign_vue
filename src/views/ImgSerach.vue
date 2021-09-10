@@ -1,6 +1,6 @@
 <template>
   <section class="cover">
-    <div class="container">
+    <div class="container backg">
       <div class="imgserach" >
         <h1>This is an Find page</h1>
       </div>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 
-<style >
+<style :scoped >
 .cover{
   position: relative;
   overflow: hidden;
@@ -29,7 +29,6 @@ export default {
   width: 100%;
   height: 100vh;
 }
-
 .cover .container {
   float: left;
   padding-left: 20%;
