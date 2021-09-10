@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import ImgSerach from '../views/ImgSerach.vue'
+import ResultController from '../views/ResultController.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/ImgSerach',
     name: 'ImgSerach',
     component: ImgSerach
+  },
+  {
+    path:'/result',
+    name: 'ResultController',
+    component: ResultController
   }
 ]
 

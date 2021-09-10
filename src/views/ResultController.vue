@@ -2,8 +2,10 @@
 
   <section class="cover">
     <div class="container">
-      <div class="about" >
-        <h1>About us</h1>
+      <div class="result" >
+        <h1>API pages</h1>
+        {{ dataList }}
+ 
       </div>
     </div>
  </section>
@@ -13,10 +15,23 @@
 
 
 <script>
- 
+import axios from "axios";
+
 export default {
-  name: 'about',
+  name: 'result',
+  data(){
+    return{
+      dataList:[]
+    }
+  },
+  created(){
+    axios.get("http://localhost:5000/testnodeapi")
+    .then(data => this.dataList = data.data.data)
+    .catch(err => console.log(err.message))
+  }
+ 
 }
+
 </script>
 
 

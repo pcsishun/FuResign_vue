@@ -11,6 +11,7 @@
           <a class="nav-link" aria-current="page" href="/"><h5 class="nav-menu">Home</h5></a>
           <router-link class="nav-link" to="/ImgSerach"><h5 class="nav-menu">Find</h5></router-link>
           <router-link class="nav-link" to="/about"><h5 class="nav-menu">About</h5></router-link>
+          <router-link class="nav-link" to="/result"><h5 class="nav-menu">API test</h5></router-link>
         </div>
       </div>
     </div>
