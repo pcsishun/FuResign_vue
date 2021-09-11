@@ -3,7 +3,7 @@
   <section class="cover">
     <div class="container">
       <div class="about" >
-        <h1>About us</h1>
+        <h1 class="test-css">About us</h1>
       </div>
     </div>
  </section>
@@ -39,5 +39,11 @@ export default {
   padding-top: 15%;
   text-align: left;
   width: 50%;
+}
+
+.test-css{
+  text-decoration: underline;
+  text-decoration-color: brown;
+ 
 }
 </style>
