@@ -1,8 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import MarketPlace from '../views/MarketPlace.vue'
-import Index from '../views/Index.vue'
-import ResultController from '../views/ResultController.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import MarketPlace from '../views/MarketPlace.vue';
+import Index from '../views/Index.vue';
+import ResultController from '../views/ResultController.vue';
+import Advice from '../views/ImgSerachPath/Advice.vue';
+import Ideas from '../views/ImgSerachPath/Ideas.vue';
 
 const routes = [
   {
@@ -26,9 +28,14 @@ const routes = [
     component: ResultController
   },
   {
-    path: '/ImgSerach/finding',
-    // name: 'Finding',
-    // component: Finding
+    path: '/ImgSerach/advice',
+    name: 'Advice',
+    component: Advice
+  }, 
+  {
+    path: '/ImgSerach/ideas',
+    name: 'Ideas',
+    component: Ideas
   }
 ]
 
