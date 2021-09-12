@@ -16,8 +16,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         
         <div class="navbar-nav sidebar-menu">
-          <router-link class="nav-link" to="/ImgSerach"><h5 @click="selectionUnderline" class="nav-menu" id="nav-menu">HOME</h5></router-link>
-          <router-link  class="nav-link" to="/about"><h5 @click="selectionUnderline" class="nav-menu1" id="nav-menu1">MARKETPLACE</h5></router-link>
+          <router-link class="nav-link" to="/home"><h5 @click="selectionUnderline" class="nav-menu" id="nav-menu">HOME</h5></router-link>
+          <router-link  class="nav-link" to="/marketplace"><h5 @click="selectionUnderline" class="nav-menu1" id="nav-menu1">MARKETPLACE</h5></router-link>
          <!-- <router-link class="nav-link" to="/result"><h5 @click="selectionUnderline" class="nav-menu2" id="nav-menu2">API test</h5></router-link> -->
         </div>
       </div>

@@ -82,7 +82,8 @@ export default {
       },
       handleSelectionForm(){
         axios.get("http://localhost:5000/selection",
-        {params:
+        {
+          params:
           {id: this.querySelector.id
           }
         }
