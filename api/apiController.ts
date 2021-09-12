@@ -52,13 +52,34 @@ app.get('/selection', (req, res) => {
 const upload = multer({
     dest: '../imgInput',
     limits:{
-        fieldSize: 500000000
+        fieldSize: 1000000
     }
 });
 
 // รับรูปเข้ามา จาก axios หน้าบ้าน 
 app.post('/single-file',upload.single('file'),(req, res)=>{
-    console.log(req.file);
+ 
+    let log_input = {
+         fieldname: req.file?.fieldname,
+         originalname: req.file?.originalname,
+         encoding: req.file?.encoding,
+         mimetype: req.file?.mimetype,
+         destination: req.file?.destination,
+         filename: req.file?.filename,
+         path: req.file?.path,
+         size: req.file?.size
+    }
+
+
+    connection.query("insert into upload_log set ?", log_input, (err, result) => {
+        if(err){
+            return console.log(err.message)
+        }else{
+            return console.log("insert log success!")
+        }
+    })
+
+  
 })
 
 

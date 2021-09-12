@@ -49,11 +49,30 @@ app.get('/selection', function (req, res) {
 var upload = (0, multer_1.default)({
     dest: '../imgInput',
     limits: {
-        fieldSize: 500000000
+        fieldSize: 1000000
     }
 });
+// รับรูปเข้ามา จาก axios หน้าบ้าน 
 app.post('/single-file', upload.single('file'), function (req, res) {
-    console.log(req.file);
+    var _a, _b, _c, _d, _e, _f, _g, _h;
+    var log_input = {
+        fieldname: (_a = req.file) === null || _a === void 0 ? void 0 : _a.fieldname,
+        originalname: (_b = req.file) === null || _b === void 0 ? void 0 : _b.originalname,
+        encoding: (_c = req.file) === null || _c === void 0 ? void 0 : _c.encoding,
+        mimetype: (_d = req.file) === null || _d === void 0 ? void 0 : _d.mimetype,
+        destination: (_e = req.file) === null || _e === void 0 ? void 0 : _e.destination,
+        filename: (_f = req.file) === null || _f === void 0 ? void 0 : _f.filename,
+        path: (_g = req.file) === null || _g === void 0 ? void 0 : _g.path,
+        size: (_h = req.file) === null || _h === void 0 ? void 0 : _h.size
+    };
+    connection_js_1.connection.query("insert into upload_log set ?", log_input, function (err, result) {
+        if (err) {
+            return console.log(err.message);
+        }
+        else {
+            return console.log("insert log success!");
+        }
+    });
 });
 // insert into database 
 app.post('/add', function (req, res) {
