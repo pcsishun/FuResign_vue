@@ -70,16 +70,13 @@ app.post('/single-file',upload.single('file'),(req, res)=>{
          size: req.file?.size
     }
 
-
     connection.query("insert into upload_log set ?", log_input, (err, result) => {
         if(err){
             return console.log(err.message)
         }else{
             return console.log("insert log success!")
         }
-    })
-
-  
+    })  
 })
 
 
