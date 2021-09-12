@@ -7,6 +7,7 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var express_1 = __importDefault(require("express"));
 var connection_js_1 = require("../config/connection.js");
 var cors_1 = __importDefault(require("cors"));
+var multer_1 = __importDefault(require("multer"));
 var PORT = 5000;
 var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
@@ -29,8 +30,8 @@ app.get('/testnodeapi', function (req, res) {
 // get data by conditons with input parameter 
 app.get('/selection', function (req, res) {
     var id = req.query.id;
-    console.log("show id: ", id);
-    console.log("show query param id: ", req.query.id);
+    // console.log("show id: ",id);
+    // console.log("show query param id: ", req.query.id);
     connection_js_1.connection.query("select * from testquerytable where id =" + id, function (err, result) {
         var msg = "";
         if (err) {
@@ -41,6 +42,18 @@ app.get('/selection', function (req, res) {
         }
         return res.send({ id: req.query.id, data: result, message: msg });
     });
+});
+// upload images // 
+// set file that images will upload 
+// set upload images // 
+var upload = (0, multer_1.default)({
+    dest: '../imgInput',
+    limits: {
+        fieldSize: 500000000
+    }
+});
+app.post('/single-file', upload.single('file'), function (req, res) {
+    console.log(req.file);
 });
 // insert into database 
 app.post('/add', function (req, res) {

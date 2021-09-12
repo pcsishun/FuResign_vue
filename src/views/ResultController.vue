@@ -20,6 +20,7 @@
         </div>
         <div class="container form-input-test">
           <h4>API Selection</h4>
+
           <form @submit.prevent="handleSelectionForm">
             <div class="mb-3">
               <input class="form-control" type="text" v-model="querySelector.id">
@@ -32,6 +33,16 @@
         <div>
           <h5>{{ dataSelection }}</h5>
         </div>
+        <!-- upload image -->
+        <div class="container">
+          <div class="large-12 medium-12 small-12 cell">
+                <label>File
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload"/>
+                </label>
+              <button v-on:click="submitFile">Submit</button>
+          </div>
+        </div>
+
     <div class="container">
       <div class="result" >
         <h1>API Result</h1>
@@ -59,7 +70,8 @@ export default {
       fromData:{
         email: "",
         desc: ""
-      }
+      },
+      file: ""
     }
   },
   created(){
@@ -74,12 +86,14 @@ export default {
     }
   },
   methods: {
+
       handleSubmitForm(){
         axios
           .post("http://localhost:5000/add", this.fromData)
           .then((res) => console.log(res))
           .catch((err) => console.log(err.message))
       },
+
       handleSelectionForm(){
         axios.get("http://localhost:5000/selection",
         {
@@ -89,6 +103,26 @@ export default {
         }
         ).then((res) => this.dataSelection = res.data.data)
         .catch(err => console.log(err.message));
+      },
+
+      // function handle upload image 
+      submitFile(){
+        let formData = new FormData();
+        formData.append('file', this.file); // append image file name as file in variable formData
+
+        axios.post('http://localhost:5000/single-file', 
+        formData,
+          {
+          headers: {'Content-Type': 'multipart/form-data'}
+          }
+        )
+        // .then(function(){console.log('SUCCESS!!');}).catch(function(){console.log('FAILURE!!');
+        // });
+      },
+
+      // Storge image into data name is file
+      handleFileUpload(){
+        this.file = this.$refs.file.files[0];
       }
   }
 }

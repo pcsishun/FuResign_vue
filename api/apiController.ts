@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from 'express';
 import { connection } from '../config/connection.js'
 import cors from 'cors';
+import multer  from "multer";
 
 const PORT = 5000;
 const app = express();
@@ -39,6 +40,26 @@ app.get('/selection', (req, res) => {
         return res.send({id:req.query.id, data: result, message:msg});
     })
 });
+
+
+
+// upload images // 
+
+// set file that images will upload 
+ 
+
+// set upload images // 
+const upload = multer({
+    dest: '../imgInput',
+    limits:{
+        fieldSize: 500000000
+    }
+});
+
+// รับรูปเข้ามา จาก axios หน้าบ้าน 
+app.post('/single-file',upload.single('file'),(req, res)=>{
+    console.log(req.file);
+})
 
 
 // insert into database 
