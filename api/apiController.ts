@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 
 
-
+// find all item in database 
 app.get('/testnodeapi', (req, res) => {
     connection.query('select * from testquerytable', (error, result, field) =>{
         if(error) throw error;
@@ -18,13 +18,30 @@ app.get('/testnodeapi', (req, res) => {
         if(result === undefined || result.length === 0){
             message = "Empty";
         }else{
-            message = "Success";
+            message = "Success!";
         }
         return res.send({ error: false, data: result, message: message});
     })
 }); 
 
- 
+// get data by conditons with input parameter 
+app.get('/selection', (req, res) => {
+    let id =  req.query.id; 
+    // console.log("show id: ",id);
+    // console.log("show query param id: ", req.query.id);
+    connection.query("select * from testquerytable where id =" + id, (err, result) => {
+        let msg = "";
+        if(err){
+            msg = err.message;
+        }else{
+            msg = "Success!";
+        }
+        return res.send({id:req.query.id, data: result, message:msg});
+    })
+});
+
+
+// insert into database 
 app.post('/add',(req, res) => {
 
     let email = req.body.email;

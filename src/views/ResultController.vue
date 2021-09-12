@@ -16,18 +16,29 @@
                 <button class="btn btn-secondary">Submit</button>
               </div>
             </form>
+          </div>
         </div>
-    </div>
+        <div class="container form-input-test">
+          <h4>API Selection</h4>
+          <form @submit.prevent="handleSelectionForm">
+            <div class="mb-3">
+              <input class="form-control" type="text" v-model="querySelector.id">
+            </div>
+            <div class="mb-3">
+              <input class="btn btn-secondary" value="Serach" type="submit"> 
+            </div>
+          </form>
+        </div>
+        <div>
+          <h5>{{ dataSelection }}</h5>
+        </div>
     <div class="container">
       <div class="result" >
         <h1>API Result</h1>
         {{ dataList }}
- 
       </div>
     </div>
-    <div class="container">
-      asdasdsad
-    </div>
+ 
  </section>
 
 </template>
@@ -41,6 +52,10 @@ export default {
   data(){
     return{
       dataList:[],
+      dataSelection: [],
+      querySelector:{
+        id: "",
+      },
       fromData:{
         email: "",
         desc: ""
@@ -64,9 +79,17 @@ export default {
           .post("http://localhost:5000/add", this.fromData)
           .then((res) => console.log(res))
           .catch((err) => console.log(err.message))
+      },
+      handleSelectionForm(){
+        axios.get("http://localhost:5000/selection",
+        {params:
+          {id: this.querySelector.id
+          }
+        }
+        ).then((res) => this.dataSelection = res.data.data)
+        .catch(err => console.log(err.message));
       }
   }
- 
 }
 
 </script>

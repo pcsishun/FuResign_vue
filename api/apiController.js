@@ -11,6 +11,7 @@ var PORT = 5000;
 var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
+// find all item in database 
 app.get('/testnodeapi', function (req, res) {
     connection_js_1.connection.query('select * from testquerytable', function (error, result, field) {
         if (error)
@@ -20,14 +21,28 @@ app.get('/testnodeapi', function (req, res) {
             message = "Empty";
         }
         else {
-            message = "Success";
+            message = "Success!";
         }
         return res.send({ error: false, data: result, message: message });
     });
 });
-
-
-
+// get data by conditons with input parameter 
+app.get('/selection', function (req, res) {
+    var id = req.query.id;
+    console.log("show id: ", id);
+    console.log("show query param id: ", req.query.id);
+    connection_js_1.connection.query("select * from testquerytable where id =" + id, function (err, result) {
+        var msg = "";
+        if (err) {
+            msg = err.message;
+        }
+        else {
+            msg = "Success!";
+        }
+        return res.send({ id: req.query.id, data: result, message: msg });
+    });
+});
+// insert into database 
 app.post('/add', function (req, res) {
     var email = req.body.email;
     var desc = req.body.desc;
